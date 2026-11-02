@@ -1,0 +1,21 @@
+services:
+  - type: worker
+    name: forex-trading-assistant
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: FOREX_API_KEY
+        sync: false
+      - key: ECONOMIC_CALENDAR_API_KEY
+        sync: false
+      - key: DB_PATH
+        value: /var/data/bot.db
+    disk:
+      name: bot-data
+      mountPath: /var/data
+      sizeGB: 1
